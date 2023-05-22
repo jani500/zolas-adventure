@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#garden {
+  background-color: rgb(111, 232, 51);
+  height: 89vh;
+  position: relative;
+  overflow: hidden;
+}
+
+#zolaUp {
+  background-image: url(/images/ZolaUp.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /* width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+#zolaUp2 {
+  background-image: url(/images/ZolaUp2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /* width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+#zolaDown {
+  background-image: url(/images/ZolaDown.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /* width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+#zolaDown2 {
+  background-image: url(/images/ZolaDown2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /*   width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+#zolaLeft {
+  background-image: url(/images/ZolaLeft.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /* width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+#zolaLeft2 {
+  background-image: url(/images/ZolaLeft2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /* width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+#zolaRight {
+  background-image: url(/images/ZolaRight.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /* width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+#zolaRight2 {
+  background-image: url(/images/ZolaRight2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  /* width: 85px;
+  height: 100px; */
+  object-fit: contain;
+  outline: 1px solid black;
+}
+
+.mouse {
+  background-image: url(/images/mouse.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  outline: 1px solid black;
+  /* width: 116px;
+  height: 68px; */
+  object-fit: contain;
+}
+
+.rat {
+  background-image: url(/images/rat.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  outline: 1px solid black;
+  /* width: 116px;
+    height: 68px; */
+  object-fit: contain;
+}
+
+.hairball {
+  background-image: url(/images/hairball.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  outline: 1px solid black;
+  /* width: 116px;
+          height: 68px; */
+  object-fit: contain;
+}
