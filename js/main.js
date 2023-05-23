@@ -3,6 +3,7 @@ class Game {
     this.zola = null;
     this.mouseArr = [];
     this.ratArr = [];
+    this.hairballArr = [];
     this.score = 0;
     this.updateScore();
   }
@@ -30,6 +31,7 @@ class Game {
     setInterval(() => {
       const rat = new Rat();
       this.ratArr.push(rat);
+      //console.log(rat);
     }, 3000);
 
     // Rat Collision Detection
@@ -39,6 +41,48 @@ class Game {
         this.detectRatCollision(rat, index);
       });
     }, 60);
+
+    // Hairball to Rat Collision Detection
+
+    setInterval(() => {
+      this.hairballArr.forEach((hairball) => {
+        this.detectHairballCollision(hairball);
+
+        // console.log(this.hairballArr);
+      });
+    }, 10);
+
+    // Move Hairballs every 10 milliseconds
+    setInterval(() => {
+      this.hairballArr.forEach((hairball, index) => {
+        if (hairball.direction === "Right") {
+          hairball.positionX++;
+        } else if (hairball.direction === "Left") {
+          hairball.positionX--;
+        } else if (hairball.direction === "Up") {
+          hairball.positionY++;
+        } else if (hairball.direction === "Down") {
+          hairball.positionY--;
+        }
+
+        hairball.element.style.left = hairball.positionX + "vw";
+        hairball.element.style.bottom = hairball.positionY + "vh";
+        //console.log(hairball);
+
+        // Cleanup hairballs outside of the playing window
+        if (
+          hairball.positionX < 0 ||
+          hairball.positionX > 100 ||
+          hairball.positionY > 100 ||
+          hairball.positionY < 0
+        ) {
+          hairball.element.remove();
+
+          // remove hairball from the array
+          this.hairballArr.splice(index, 1); //remove from the array
+        }
+      });
+    }, 10);
   }
 
   addEventListeners() {
@@ -93,6 +137,27 @@ class Game {
     }
   }
 
+  detectHairballCollision(hairball) {
+    //console.log("hairballObj", hairball, this.ratArr);
+    this.ratArr.forEach((rat, index) => {
+      if (
+        hairball.positionX < rat.positionX + rat.width &&
+        hairball.positionX + hairball.width > rat.positionX &&
+        hairball.positionY < rat.positionY + rat.height &&
+        hairball.height + hairball.positionY > rat.positionY
+      ) {
+        console.log("RAT DOWN!");
+        // remove rat from DOM
+        rat.domElement.remove();
+
+        // remove mouse from the array
+        this.ratArr.splice(index, 1); //remove from the array
+
+        this.updateScore();
+      }
+    });
+  }
+
   updateScore() {
     this.score += 1;
     return console.log(this.score);
@@ -100,7 +165,10 @@ class Game {
 
   shootHairball() {
     let hairball = this.createHairballDomElement();
-    moveHairball(hairball);
+
+    this.hairballArr.push(hairball);
+
+    console.log(hairball);
   }
 
   createHairballDomElement() {
@@ -129,18 +197,6 @@ class Game {
     } else if (getZolaDirection === "Up") {
       zolaY += this.zola.height / 2 + 5;
     }
-    /*     if (getZolaDirection === "Right") {
-      hairballDomElem.style.left = this.zola.positionX + "vw";
-      hairballDomElem.style.bottom = Zola.positionY + "vh";
-    } else if (getZolaDirection === "Left") {
-      hairballDomElem.style.left = Zola.positionX - 3 + "vw";
-      hairballDomElem.style.bottom = Zola.positionY + "vh";
-    } else if (getZolaDirection === "Down") {
-      hairballDomElem.style.left = Zola.positionX + "vw";
-      hairballDomElem.style.bottom = Zola.positionY - 3 + "vh";
-    } else if (getZolaDirection === "Up") {
-      hairballDomElem.style.left = Zola.positionX + "vw";
-      hairballDomElem.style.bottom = Zola.positionY + 3 + "vh"; */
 
     hairballDomElem.style.left = zolaX + "vw";
     hairballDomElem.style.bottom = zolaY + "vh";
@@ -148,34 +204,19 @@ class Game {
     const parentElm = document.getElementById("garden");
     parentElm.appendChild(hairballDomElem);
 
-    return {
+    let hairballObj = {
       direction: getZolaDirection,
       positionX: zolaX,
       positionY: zolaY,
       element: hairballDomElem,
+      width: 10,
+      height: 10,
     };
-  }
 
-  moveHairball(hairball) {
-    setInterval(() => {
-      const getZolaDirection = hairball.direction;
-
-      if (getZolaDirection === "Right") {
-        hairball.positionX += 20;
-        hairball.element.style.left = hiarball.positionX + "vw";
-      } else if (getZolaDirection === "Left") {
-        hairball.positionX--;
-        this.domElement.style.left = this.positionX + "vw";
-      } else if (getZolaDirection === "Up") {
-        this.hairball.positionY + 20;
-        this.hairball.domElement.style.bottom = hairball.positionY + "vw";
-      } else if (getZolaDirection === "Down") {
-        hairball.positionX--;
-        this.domElement.style.bottom = this.positionY + "vw";
-      }
-    }, 10);
+    return hairballObj;
   }
 }
+
 class Zola {
   constructor() {
     this.width = 7;
@@ -304,7 +345,7 @@ class Mouse {
     this.positionY = Math.floor(Math.random() * 100);
     this.domElement = null;
 
-    this.createMouseDomElement();
+    this.createMouseDomElement(this.positionX);
   }
 
   createMouseDomElement() {
