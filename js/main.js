@@ -100,7 +100,7 @@ class Game {
 
   shootHairball() {
     let hairball = this.createHairballDomElement();
-    //moveHairball(hairball);
+    moveHairball(hairball);
   }
 
   createHairballDomElement() {
@@ -109,13 +109,28 @@ class Game {
     //this.domElement.className = "mouse";
 
     hairballDomElem.className = "hairball";
-    hairballDomElem.style.width = "20vw";
-    hairballDomElem.style.height = "20vh";
-    const getZolaDirection = lastZolaMove;
+    hairballDomElem.style.width = "10vw";
+    hairballDomElem.style.height = "10vh";
+
+    let getZolaDirection = this.zola.getZolaDirection();
     console.log(getZolaDirection);
+    let zolaX = this.zola.positionX;
+    let zolaY = this.zola.positionY;
 
     if (getZolaDirection === "Right") {
-      hairballDomElem.style.left = Zola.positionX + 3 + "vw";
+      zolaX += this.zola.width / 2 + 5;
+      //hairballDomElem.style.bottom = Zola.positionY + "vh";
+    } else if (getZolaDirection === "Left") {
+      zolaX -= this.zola.width / 2 + 5;
+      //hairballDomElem.style.bottom = Zola.positionY + "vh";
+    } else if (getZolaDirection === "Down") {
+      //hairballDomElem.style.left = Zola.positionX + "vw";
+      zolaY -= this.zola.height / 2 + 5;
+    } else if (getZolaDirection === "Up") {
+      zolaY += this.zola.height / 2 + 5;
+    }
+    /*     if (getZolaDirection === "Right") {
+      hairballDomElem.style.left = this.zola.positionX + "vw";
       hairballDomElem.style.bottom = Zola.positionY + "vh";
     } else if (getZolaDirection === "Left") {
       hairballDomElem.style.left = Zola.positionX - 3 + "vw";
@@ -125,19 +140,42 @@ class Game {
       hairballDomElem.style.bottom = Zola.positionY - 3 + "vh";
     } else if (getZolaDirection === "Up") {
       hairballDomElem.style.left = Zola.positionX + "vw";
-      hairballDomElem.style.bottom = Zola.positionY + 3 + "vh";
+      hairballDomElem.style.bottom = Zola.positionY + 3 + "vh"; */
 
-      //step3: append to the dom: `parentElm.appendChild()`
-      const parentElm = document.getElementById("garden");
-      parentElm.appendChild(hairballDomElem);
+    hairballDomElem.style.left = zolaX + "vw";
+    hairballDomElem.style.bottom = zolaY + "vh";
+    //step3: append to the dom: `parentElm.appendChild()`
+    const parentElm = document.getElementById("garden");
+    parentElm.appendChild(hairballDomElem);
 
-      return hairballDomElem;
-    }
+    return {
+      direction: getZolaDirection,
+      positionX: zolaX,
+      positionY: zolaY,
+      element: hairballDomElem,
+    };
   }
 
-  moveHairball() {}
-}
+  moveHairball(hairball) {
+    setInterval(() => {
+      const getZolaDirection = hairball.direction;
 
+      if (getZolaDirection === "Right") {
+        hairball.positionX += 20;
+        hairball.element.style.left = hiarball.positionX + "vw";
+      } else if (getZolaDirection === "Left") {
+        hairball.positionX--;
+        this.domElement.style.left = this.positionX + "vw";
+      } else if (getZolaDirection === "Up") {
+        this.hairball.positionY + 20;
+        this.hairball.domElement.style.bottom = hairball.positionY + "vw";
+      } else if (getZolaDirection === "Down") {
+        hairball.positionX--;
+        this.domElement.style.bottom = this.positionY + "vw";
+      }
+    }, 10);
+  }
+}
 class Zola {
   constructor() {
     this.width = 7;
@@ -153,6 +191,18 @@ class Zola {
     this.lastZolaMove = "Up";
 
     this.lives = 9;
+  }
+
+  getZolaDirection() {
+    return this.lastZolaMove;
+  }
+
+  getZolaPositionX() {
+    return this.zola.positionX;
+  }
+
+  getZolaPositionY() {
+    return this.zola.positionY;
   }
 
   createDomElement() {
