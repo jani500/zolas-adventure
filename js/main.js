@@ -160,7 +160,15 @@ class Game {
 
   updateScore() {
     this.score += 1;
-    return console.log(this.score);
+
+    const parentElm = document.getElementById("score");
+    const scoreValue = document.getElementById("score-value");
+
+    scoreValue.textContent = this.score;
+
+    parentElm.appendChild(scoreValue);
+
+    // return console.log(this.score);
   }
 
   shootHairball() {
@@ -215,6 +223,8 @@ class Game {
 
     return hairballObj;
   }
+
+  gameOver() {}
 }
 
 class Zola {
@@ -263,9 +273,41 @@ class Zola {
   }
 
   removeLife() {
-    this.lives -= 1;
-    return console.log(this.lives);
+    // this.lives -= 1;
+
+    const parentElm = document.getElementById("lives");
+
+    const heart1 = document.getElementById("heart1");
+    const heart2 = document.getElementById("heart2");
+    const heart3 = document.getElementById("heart3");
+
+    if (!heart2) {
+      parentElm.removeChild(heart1);
+      gameOver();
+    }
+
+    if (!heart3) {
+      parentElm.removeChild(heart2);
+    }
+
+    if (heart3) {
+      parentElm.removeChild(heart3);
+    }
   }
+  /*     if (lifeArr.length === 3) {
+      // remove from the DOM
+      heart3.remove;
+
+      // remove from the array
+      lifeArr.shift;
+    } else if (lifeArr.length === 2) {
+      heart2.remove;
+      lifeArr.shift;
+    } else if (lifeArr.length === 1) {
+      heart1.remove;
+      lifeArr.shift;
+    }
+ */
 
   moveUp() {
     if (this.lastZolaMove === "Up" && this.domElement.id === "zolaUp") {

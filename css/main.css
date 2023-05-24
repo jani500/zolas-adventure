@@ -1,13 +1,89 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: rgb(254, 255, 226, 1);
+}
+
+#instructions {
+  background-image: url(/images/instructionsBanner.png);
+  left: 17vw;
+  width: 58vw;
+  height: 20vh;
+  max-height: 20vh;
+  top: 1vh;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  border-style: dotted;
+}
+
+#top-container {
+  background-color: rgb(254, 255, 226, 1);
+  width: 60vw;
+  height: 10vh;
+  top: 4vh;
+  left: 15vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#score {
+  background-color: rgb(254, 255, 226, 1);
+  width: 15vw;
+  height: 10vh;
+  left: 8vw;
+  align-items: center;
+  position: relative;
+  display: flex;
+  font-family: "Amatic SC";
+  font-size: 30px;
+}
+
+#score-value {
+  background-color: 255, 255, 255;
+  left: 1vw;
+  align-items: center;
+  /* width: 10vw; */
+  height: 5vh;
+  position: relative;
+  display: flex;
+  font-family: "Amatic SC";
+  font-size: 70px;
+  font-weight: bold;
+}
+
+#lives {
+  background-color: rgb(254, 255, 226, 1);
+  min-width: 360px;
+  width: 25vw;
+  height: 10vh;
+  position: relative;
+  display: flex;
+  font-family: "Amatic SC";
+  font-size: 30px;
+  font-weight: bold;
+  align-items: center;
+}
+
+#lives img {
+  width: 5vw;
+  height: 8vh;
+  display: flex;
 }
 
 #garden {
-  background-color: rgb(111, 232, 51);
-  height: 89vh;
+  background-color: rgb(86, 244, 7);
+  display: block;
+  height: 60vh;
+  width: 60vw;
+  max-width: 200vw;
+  left: 15%;
+  margin-top: 5vh;
   position: relative;
   overflow: hidden;
+  outline: 10px solid black;
 }
 
 #zolaUp {
