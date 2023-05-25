@@ -5,7 +5,89 @@ class Game {
     this.ratArr = [];
     this.hairballArr = [];
     this.score = 0;
-    this.updateScore();
+    this.mouseEventListeners();
+    // this.updateScore(this.score);
+  }
+
+  mouseEventListeners() {
+    // Start Button scenario
+    const startButton = document.getElementById("start-button");
+    const playAgainButton = document.getElementById("play-again-button");
+
+    startButton.addEventListener("click", () => {
+      console.log("start button clicked");
+      this.startScreen();
+    });
+
+    playAgainButton.addEventListener("click", () => {
+      this.replayGame();
+    });
+  }
+
+  // Do this tomorrow with button click
+
+  startScreen() {
+    const startDiv = document.getElementById("start-screen");
+    const instructions = document.getElementById("instructions");
+    const topContainer = document.getElementById("top-container");
+    const garden = document.getElementById("garden");
+
+    startDiv.style.display = "none";
+    instructions.style.display = "flex";
+    topContainer.style.display = "flex";
+    garden.style.display = "flex";
+    this.start();
+  }
+
+  gameOverScreen() {
+    const instructions = document.getElementById("instructions");
+    const topContainer = document.getElementById("top-container");
+    const garden = document.getElementById("garden");
+    const gameOverScreen = document.getElementById("gameover-screen");
+
+    console.log("Game Over!");
+    instructions.style.display = "none";
+    topContainer.style.display = "none";
+    garden.style.display = "none";
+    gameOverScreen.style.display = "block";
+  }
+
+  replayGame() {
+    const instructions = document.getElementById("instructions");
+    const topContainer = document.getElementById("top-container");
+    const garden = document.getElementById("garden");
+    const gameOverScreen = document.getElementById("gameover-screen");
+
+    gameOverScreen.style.display = "none";
+    instructions.style.display = "flex";
+    topContainer.style.display = "flex";
+    garden.style.display = "flex";
+
+    //this.cleanup();
+    document.getElementById("garden").innerHTML = "";
+    clearInterval(idIntervalMouse);
+    this.start();
+  }
+
+  removeLife() {
+    const parentElm = document.getElementById("lives");
+
+    const heart1 = document.getElementById("heart1");
+    const heart2 = document.getElementById("heart2");
+    const heart3 = document.getElementById("heart3");
+
+    if (!heart2) {
+      parentElm.removeChild(heart1);
+      this.gameOverScreen();
+    }
+
+    if (!heart3) {
+      parentElm.removeChild(heart2);
+    }
+
+    if (heart3) {
+      parentElm.removeChild(heart3);
+    }
   }
 
   start() {
@@ -13,7 +95,7 @@ class Game {
     this.addEventListeners();
 
     // Spawn mouse every second and add to mouse array
-    setInterval(() => {
+    this.idIntervalMouse = setInterval(() => {
       const mouse = new Mouse();
       this.mouseArr.push(mouse);
     }, 1000);
@@ -95,7 +177,7 @@ class Game {
         this.zola.moveLeft();
       } else if (event.code === "ArrowRight") {
         this.zola.moveRight();
-      } else if (event.code === "KeyA") {
+      } else if (event.code === "Space") {
         this.shootHairball();
       }
     });
@@ -115,7 +197,7 @@ class Game {
       // remove mouse from the array
       this.mouseArr.splice(index, 1); //remove from the array
 
-      this.updateScore();
+      this.updateScore(5);
     }
   }
 
@@ -133,7 +215,7 @@ class Game {
       // remove mouse from the array
       this.ratArr.splice(index, 1); //remove from the array
 
-      this.zola.removeLife();
+      this.removeLife();
     }
   }
 
@@ -153,18 +235,16 @@ class Game {
         // remove mouse from the array
         this.ratArr.splice(index, 1); //remove from the array
 
-        this.updateScore();
+        this.updateScore(20);
       }
     });
   }
 
-  updateScore() {
-    this.score += 1;
-
+  updateScore(score) {
     const parentElm = document.getElementById("score");
     const scoreValue = document.getElementById("score-value");
 
-    scoreValue.textContent = this.score;
+    scoreValue.textContent = this.score += score;
 
     parentElm.appendChild(scoreValue);
 
@@ -229,8 +309,8 @@ class Game {
 
 class Zola {
   constructor() {
-    this.width = 7;
-    this.height = 20;
+    this.width = 6;
+    this.height = 12;
     this.positionX = 50;
     this.positionY = 40;
 
@@ -240,8 +320,6 @@ class Zola {
 
     // set default value to Up
     this.lastZolaMove = "Up";
-
-    this.lives = 9;
   }
 
   getZolaDirection() {
@@ -271,43 +349,6 @@ class Zola {
     const parentElm = document.getElementById("garden");
     parentElm.appendChild(this.domElement);
   }
-
-  removeLife() {
-    // this.lives -= 1;
-
-    const parentElm = document.getElementById("lives");
-
-    const heart1 = document.getElementById("heart1");
-    const heart2 = document.getElementById("heart2");
-    const heart3 = document.getElementById("heart3");
-
-    if (!heart2) {
-      parentElm.removeChild(heart1);
-      gameOver();
-    }
-
-    if (!heart3) {
-      parentElm.removeChild(heart2);
-    }
-
-    if (heart3) {
-      parentElm.removeChild(heart3);
-    }
-  }
-  /*     if (lifeArr.length === 3) {
-      // remove from the DOM
-      heart3.remove;
-
-      // remove from the array
-      lifeArr.shift;
-    } else if (lifeArr.length === 2) {
-      heart2.remove;
-      lifeArr.shift;
-    } else if (lifeArr.length === 1) {
-      heart1.remove;
-      lifeArr.shift;
-    }
- */
 
   moveUp() {
     if (this.lastZolaMove === "Up" && this.domElement.id === "zolaUp") {
@@ -381,8 +422,8 @@ class Zola {
 
 class Mouse {
   constructor() {
-    this.width = 10;
-    this.height = 20;
+    this.width = 8;
+    this.height = 8;
     this.positionX = Math.floor(Math.random() * 100);
     this.positionY = Math.floor(Math.random() * 100);
     this.domElement = null;
@@ -408,8 +449,8 @@ class Mouse {
 
 class Rat {
   constructor() {
-    this.width = 10;
-    this.height = 20;
+    this.width = 9;
+    this.height = 16;
     this.positionX = Math.floor(Math.random() * 100);
     this.positionY = Math.floor(Math.random() * 100);
     this.domElement = null;
@@ -434,4 +475,3 @@ class Rat {
 }
 
 const game = new Game();
-game.start();
