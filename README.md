@@ -22,4 +22,4 @@ Have fun playing!
 
 - Jani
 
-![Screenshot](the-real-zola.png)
+![Screenshot](the-real-zola.jpg)
