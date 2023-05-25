@@ -2,11 +2,11 @@
 
 # Description
 
-In Zola's adventure, you play Zola the cat and you're roaming the garden, catching mice, avoiding rats, and killing rats by shooting hairballs.
+In Zola's adventure, you play Zola the cat and you're roaming the garden, catching mice, avoiding rats, and even killing rats by shooting your hairballs with the spacebar key!
 
 This game was built using vanilla Javascript, i.e. without frameworks or libraries, utilises OOP programming concepts and practices DOM manipulation.
 
-P.S. Zola's adventure is based on Zola, a real cat. Scroll to the end of this document for a pic of the real Zola.
+P.S. Zola's adventure is based on Zola, a real cat.
 
 # Instructions to play
 
