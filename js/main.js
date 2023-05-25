@@ -31,22 +31,28 @@ class Game {
     const instructions = document.getElementById("instructions");
     const topContainer = document.getElementById("top-container");
     const garden = document.getElementById("garden");
+    const headerTitle = document.getElementById("header-title");
 
     startDiv.style.display = "none";
-    instructions.style.display = "flex";
+    // instructions.style.display = "flex";
+    headerTitle.style.display = "flex";
+
     topContainer.style.display = "flex";
     garden.style.display = "flex";
     this.start();
   }
 
   gameOverScreen() {
-    const instructions = document.getElementById("instructions");
+    // const instructions = document.getElementById("instructions");
     const topContainer = document.getElementById("top-container");
     const garden = document.getElementById("garden");
     const gameOverScreen = document.getElementById("gameover-screen");
+    const headerTitle = document.getElementById("header-title");
 
     console.log("Game Over!");
-    instructions.style.display = "none";
+    //instructions.style.display = "none";
+    headerTitle.style.display = "none";
+
     topContainer.style.display = "none";
     garden.style.display = "none";
     gameOverScreen.style.display = "block";

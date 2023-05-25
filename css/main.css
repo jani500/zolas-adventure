@@ -24,6 +24,7 @@ body {
   left: 2vw;
   width: 14vw;
   height: 8vh;
+  top: 10vh;
   display: block;
   background-color: white;
   font-family: "Amatic SC";
@@ -61,15 +62,33 @@ body {
   font-weight: bolder;
 }
 
-#instructions {
-  background-image: url("../images/InstructionsHeader.png");
-  left: 23vw;
-  width: 43vw;
-  height: 19vh;
-  top: 1vh;
+#header-title {
+  background-color: rgb(254, 255, 226, 1);
+  width: 16vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  height: 10vh;
+  left: 38vw;
+  text-align: center;
+  align-items: center;
   position: relative;
   display: none;
-  border-style: dotted;
+  font-family: "Amatic SC";
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+#how-to {
+  background-color: rgb(254, 255, 226, 1);
+  width: 23vw;
+  height: 20vh;
+  left: 0vw;
+  top: 0vh;
+  text-align: left;
+  position: relative;
+  display: block;
+  font-family: "Amatic SC";
+  font-size: 30px;
 }
 
 #top-container {
@@ -134,7 +153,7 @@ body {
   display: none;
   height: 60vh;
   width: 60vw;
-  max-width: 200vw;
+  max-width: 60vw;
   left: 20%;
   margin-top: 5vh;
   position: relative;
