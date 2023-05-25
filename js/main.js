@@ -53,20 +53,64 @@ class Game {
   }
 
   replayGame() {
-    const instructions = document.getElementById("instructions");
+    /*     const instructions = document.getElementById("instructions");
     const topContainer = document.getElementById("top-container");
     const garden = document.getElementById("garden");
-    const gameOverScreen = document.getElementById("gameover-screen");
+    const gameOverScreen = document.getElementById("gameover-screen"); */
 
-    gameOverScreen.style.display = "none";
+    /*     gameOverScreen.style.display = "none";
     instructions.style.display = "flex";
     topContainer.style.display = "flex";
-    garden.style.display = "flex";
+    garden.style.display = "flex"; */
+
+    location.href = "./index.html";
 
     //this.cleanup();
-    document.getElementById("garden").innerHTML = "";
-    clearInterval(idIntervalMouse);
-    this.start();
+    // document.getElementById("garden").innerHTML = "";
+    // this.zola.domElement.remove();
+    /*     clearInterval(this.idIntervalMouseSpawn);
+    clearInterval(this.idIntervalRatSpawn);
+    clearInterval(this.idIntervalHairballDetection);
+    clearInterval(this.idIntervalMouseDetection);
+    clearInterval(this.idIntervalRatDetection);
+    clearInterval(this.idIntervalMoveHairball); */
+
+    /* const lives = document.getElementById("lives");
+
+    const heart1 = document.createElement("img");
+    const heart2 = document.createElement("img");
+    const heart3 = document.createElement("img");
+
+    heart1.src = "./images/heart.png";
+    heart1.id = "heart1";
+
+    lives.appendChild(heart1);
+
+    if (heart1) {
+      heart2.src = "./images/heart.png";
+      heart2.id = "heart1";
+      lives.appendChild(heart2);
+    }
+
+    if (heart2) {
+      heart3.src = "./images/heart.png";
+      heart3.id = "heart1";
+      lives.appendChild(heart3);
+    } */
+
+    //lives.appendChild(heart1);
+    // lives.appendChild(heart2);
+    // lives.appendChild(heart3);
+
+    /*     this.zola = null;
+    this.mouseArr = [];
+    this.ratArr = [];
+    this.hairballArr = [];
+    this.score = 0; */
+
+    /*    const game = new Game();
+
+    this.start(); */
   }
 
   removeLife() {
@@ -80,7 +124,6 @@ class Game {
       parentElm.removeChild(heart1);
       this.gameOverScreen();
     }
-
     if (!heart3) {
       parentElm.removeChild(heart2);
     }
@@ -95,14 +138,14 @@ class Game {
     this.addEventListeners();
 
     // Spawn mouse every second and add to mouse array
-    this.idIntervalMouse = setInterval(() => {
+    this.idIntervalMouseSpawn = setInterval(() => {
       const mouse = new Mouse();
       this.mouseArr.push(mouse);
     }, 1000);
 
     // Mouse Collision Detection
 
-    setInterval(() => {
+    this.idIntervalMouseDetection = setInterval(() => {
       this.mouseArr.forEach((mouse, index) => {
         this.detectMouseCollision(mouse, index);
         // Detect collision and remove mouse;
@@ -110,7 +153,7 @@ class Game {
     }, 60);
 
     // Spawn Rat every 3 seconds and add to Rat Array
-    setInterval(() => {
+    this.idIntervalRatSpawn = setInterval(() => {
       const rat = new Rat();
       this.ratArr.push(rat);
       //console.log(rat);
@@ -118,7 +161,7 @@ class Game {
 
     // Rat Collision Detection
 
-    setInterval(() => {
+    this.idIntervalRatDetection = setInterval(() => {
       this.ratArr.forEach((rat, index) => {
         this.detectRatCollision(rat, index);
       });
@@ -126,7 +169,7 @@ class Game {
 
     // Hairball to Rat Collision Detection
 
-    setInterval(() => {
+    this.idIntervalHairballDetection = setInterval(() => {
       this.hairballArr.forEach((hairball) => {
         this.detectHairballCollision(hairball);
 
@@ -135,7 +178,7 @@ class Game {
     }, 10);
 
     // Move Hairballs every 10 milliseconds
-    setInterval(() => {
+    this.idIntervalMoveHairball = setInterval(() => {
       this.hairballArr.forEach((hairball, index) => {
         if (hairball.direction === "Right") {
           hairball.positionX++;
