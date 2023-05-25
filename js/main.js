@@ -53,64 +53,10 @@ class Game {
   }
 
   replayGame() {
-    /*     const instructions = document.getElementById("instructions");
-    const topContainer = document.getElementById("top-container");
-    const garden = document.getElementById("garden");
-    const gameOverScreen = document.getElementById("gameover-screen"); */
-
-    /*     gameOverScreen.style.display = "none";
-    instructions.style.display = "flex";
-    topContainer.style.display = "flex";
-    garden.style.display = "flex"; */
+    // was forced to redirect to start screen due to major issues with cleanup functionality
+    // attempted to clean up my arrays, dom elements, objects but ran out of time to get it working so went with simple redirect to start screen
 
     location.href = "./index.html";
-
-    //this.cleanup();
-    // document.getElementById("garden").innerHTML = "";
-    // this.zola.domElement.remove();
-    /*     clearInterval(this.idIntervalMouseSpawn);
-    clearInterval(this.idIntervalRatSpawn);
-    clearInterval(this.idIntervalHairballDetection);
-    clearInterval(this.idIntervalMouseDetection);
-    clearInterval(this.idIntervalRatDetection);
-    clearInterval(this.idIntervalMoveHairball); */
-
-    /* const lives = document.getElementById("lives");
-
-    const heart1 = document.createElement("img");
-    const heart2 = document.createElement("img");
-    const heart3 = document.createElement("img");
-
-    heart1.src = "./images/heart.png";
-    heart1.id = "heart1";
-
-    lives.appendChild(heart1);
-
-    if (heart1) {
-      heart2.src = "./images/heart.png";
-      heart2.id = "heart1";
-      lives.appendChild(heart2);
-    }
-
-    if (heart2) {
-      heart3.src = "./images/heart.png";
-      heart3.id = "heart1";
-      lives.appendChild(heart3);
-    } */
-
-    //lives.appendChild(heart1);
-    // lives.appendChild(heart2);
-    // lives.appendChild(heart3);
-
-    /*     this.zola = null;
-    this.mouseArr = [];
-    this.ratArr = [];
-    this.hairballArr = [];
-    this.score = 0; */
-
-    /*    const game = new Game();
-
-    this.start(); */
   }
 
   removeLife() {
@@ -119,6 +65,8 @@ class Game {
     const heart1 = document.getElementById("heart1");
     const heart2 = document.getElementById("heart2");
     const heart3 = document.getElementById("heart3");
+    const heart4 = document.getElementById("heart4");
+    const heart5 = document.getElementById("heart5");
 
     if (!heart2) {
       parentElm.removeChild(heart1);
@@ -128,8 +76,15 @@ class Game {
       parentElm.removeChild(heart2);
     }
 
-    if (heart3) {
+    if (!heart4) {
       parentElm.removeChild(heart3);
+    }
+
+    if (!heart5) {
+      parentElm.removeChild(heart4);
+    }
+    if (heart5) {
+      parentElm.removeChild(heart5);
     }
   }
 

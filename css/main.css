@@ -50,6 +50,7 @@ body {
 
 #play-again-button {
   position: relative;
+  left: 2vw;
   width: 14vw;
   height: 8vh;
   display: block;
