@@ -20,4 +20,4 @@ https://jani500.github.io/zolas-adventure/
 
 Have fun playing!
 
-- Jani
+-Jani
