@@ -96,7 +96,7 @@ class Game {
     this.idIntervalMouseSpawn = setInterval(() => {
       const mouse = new Mouse();
       this.mouseArr.push(mouse);
-    }, 1000);
+    }, 250);
 
     // Mouse Collision Detection
 
@@ -112,7 +112,7 @@ class Game {
       const rat = new Rat();
       this.ratArr.push(rat);
       //console.log(rat);
-    }, 3000);
+    }, 1000);
 
     // Rat Collision Detection
 
