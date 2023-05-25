@@ -21,5 +21,3 @@ https://jani500.github.io/zolas-adventure/
 Have fun playing!
 
 - Jani
-
-![Screenshot](the-real-zola.jpg)
